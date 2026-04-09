@@ -1,0 +1,29 @@
+name: mute_mate_app
+description:
+  "Mute_Mate an application helps user to communicate with disabled people like
+  mute and deaf people. It provides a platform for them to express themselves
+  and connect with others. The app includes features such as text-to-speech,
+  sign language recognition, and a community forum for users to share their
+  experiences and support each other and also provide a platform to learn sign
+  language."
+publish_to: "none"
+version: 0.1.0
+
+environment:
+  sdk: ^3.9.2
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_riverpod: ^2.5.1
+  flutter_svg: ^2.2.4
+  google_fonts: ^8.0.2
+  material_design_icons_flutter: ^7.0.7296
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+
+flutter:
+  uses-material-design: true
