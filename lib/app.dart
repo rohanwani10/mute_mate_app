@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:mute_mate_app/features/learn/learn_page.dart';
 import 'core/app_theme.dart';
 import 'shared/layouts/screen_shell.dart';
 import 'shared/providers/nav_provider.dart';
@@ -46,9 +47,9 @@ class AppHome extends ConsumerWidget {
         children: [
           // Main Application Shell
           MuteMateScreenShell(
-            title: null, // Title is handled by tabs or shell defaults
-            showProfile: activeTab == MuteMateTab.home,
-            showNotifications: activeTab == MuteMateTab.home,
+            title: 'MuteMate',
+            showProfile: activeTab != MuteMateTab.profile,
+            showNotifications: activeTab != MuteMateTab.profile,
             showBottomNav: true,
             child: _buildPage(activeTab),
           ),
@@ -57,8 +58,12 @@ class AppHome extends ConsumerWidget {
           AnimatedPositioned(
             duration: const Duration(milliseconds: 300),
             curve: Curves.easeInOutCubic,
-            left: isNotificationsVisible ? 0 : MediaQuery.of(context).size.width,
-            right: isNotificationsVisible ? 0 : -MediaQuery.of(context).size.width,
+            left: isNotificationsVisible
+                ? 0
+                : MediaQuery.of(context).size.width,
+            right: isNotificationsVisible
+                ? 0
+                : -MediaQuery.of(context).size.width,
             top: 0,
             bottom: 0,
             child: Material(
@@ -70,19 +75,21 @@ class AppHome extends ConsumerWidget {
                 showBottomNav: false,
                 leading: IconButton(
                   icon: const Icon(Icons.arrow_back),
-                  onPressed: () => ref.read(isNotificationsVisibleProvider.notifier).state = false,
+                  onPressed: () =>
+                      ref.read(isNotificationsVisibleProvider.notifier).state =
+                          false,
                 ),
                 actions: [
                   TextButton(
                     onPressed: () {},
                     child: const Text(
-                      'Mark all read',
+                      'Read All',
                       style: TextStyle(
                         color: AppColors.primary,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                  )
+                  ),
                 ],
                 child: const NotificationsPage(),
               ),
@@ -97,10 +104,8 @@ class AppHome extends ConsumerWidget {
     switch (tab) {
       case MuteMateTab.home:
         return const DashboardPage();
-      case MuteMateTab.translate:
-        return const PlaceholderPage('Translate Page');
       case MuteMateTab.learn:
-        return const PlaceholderPage('Learn Page');
+        return const LearnPage();
       case MuteMateTab.profile:
         return const PlaceholderPage('Profile Page');
       default:

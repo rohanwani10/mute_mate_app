@@ -65,8 +65,8 @@ class MuteMateBottomNav extends ConsumerWidget {
               Expanded(
                 child: _NavButton(
                   icon: currentIndex == 2
-                      ? Icons.import_contacts
-                      : Icons.import_contacts_outlined,
+                      ? Icons.auto_stories
+                      : Icons.auto_stories_outlined,
                   label: 'Learn',
                   isActive: currentIndex == 2,
                   onTap: () => ref.read(navIndexProvider.notifier).state = 2,

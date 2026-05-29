@@ -27,22 +27,14 @@ class MuteMateAppBar extends ConsumerWidget implements PreferredSizeWidget {
       elevation: 0,
       centerTitle: true,
       leading: leading ?? (showProfile ? _ProfileAvatar() : null),
-      title: title != null
-          ? Text(
-              title!,
-              style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                color: AppColors.primary,
-                fontWeight: FontWeight.bold,
-              ),
-            )
-          : Text(
-              'MuteMate',
-              style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                color: const Color(0xFF00685F),
-                fontWeight: FontWeight.bold,
-                fontSize: 24,
-              ),
-            ),
+      title: Text(
+        title ?? 'MuteMate',
+        style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+          color: const Color(0xFF00685F),
+          fontWeight: FontWeight.bold,
+          fontSize: 24,
+        ),
+      ),
       actions: [
         if (showNotifications) _NotificationIcon(),
         if (actions != null) ...actions!,
