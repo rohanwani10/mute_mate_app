@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../core/app_theme.dart';
+import 'lessons_library_page.dart';
 import 'providers/learn_provider.dart';
 import 'widgets/category_card.dart';
 import 'widgets/lesson_card.dart';
@@ -80,9 +81,19 @@ class LearnPage extends ConsumerWidget {
                   ),
                   itemCount: categories.length,
                   itemBuilder: (context, index) {
+                    final category = categories[index];
                     return CategoryCard(
-                      category: categories[index],
-                      onTap: () {},
+                      category: category,
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => LessonsLibraryPage(
+                              initialCategory: category.name,
+                            ),
+                          ),
+                        );
+                      },
                     );
                   },
                 ),

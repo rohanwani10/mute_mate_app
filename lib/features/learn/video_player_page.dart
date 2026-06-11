@@ -5,8 +5,13 @@ import 'models/learn_models.dart';
 
 class VideoPlayerPage extends ConsumerStatefulWidget {
   final Lesson lesson;
+  final String videoPath;
 
-  const VideoPlayerPage({required this.lesson, super.key});
+  const VideoPlayerPage({
+    required this.lesson,
+    required this.videoPath,
+    super.key,
+  });
 
   @override
   ConsumerState<VideoPlayerPage> createState() => _VideoPlayerPageState();
@@ -626,9 +631,10 @@ class _VideoPlayerPageState extends ConsumerState<VideoPlayerPage> {
                                     backgroundColor: AppColors.primary,
                                   ),
                                 );
-                                Future.delayed(const Duration(seconds: 1), () {
-                                  Navigator.pop(context);
-                                });
+                                Future.delayed(
+                                  const Duration(seconds: 1),
+                                  () {},
+                                );
                               },
                       ),
                     ),

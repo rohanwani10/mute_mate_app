@@ -19,6 +19,7 @@ dependencies:
   flutter_svg: ^2.2.4
   google_fonts: ^8.0.2
   material_design_icons_flutter: ^7.0.7296
+  video_player: ^2.9.2
 
 dev_dependencies:
   flutter_test:
@@ -27,3 +28,5 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  assets:
+    - assets/videos/
