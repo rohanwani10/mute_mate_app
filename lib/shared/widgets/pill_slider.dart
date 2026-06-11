@@ -25,7 +25,7 @@ class MuteMateSlidingPill extends StatelessWidget {
       child: LayoutBuilder(
         builder: (context, constraints) {
           final segmentWidth = constraints.maxWidth / labels.length;
-          
+
           return Stack(
             children: [
               // Sliding Indicator
@@ -44,7 +44,7 @@ class MuteMateSlidingPill extends StatelessWidget {
                     borderRadius: BorderRadius.circular(20),
                     boxShadow: [
                       BoxShadow(
-                        color: AppColors.primary.withOpacity(0.3),
+                        color: AppColors.primary.withValues(alpha: 0.3),
                         blurRadius: 8,
                         offset: const Offset(0, 2),
                       ),

@@ -9,7 +9,7 @@ class QuickActionsBottomSheet extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: const Color(0xFFF9F9F8).withOpacity(0.95),
+        color: const Color(0xFFF9F9F8).withValues(alpha: 0.95),
         borderRadius: const BorderRadius.vertical(
           top: Radius.circular(48),
         ), // Your preferred radius

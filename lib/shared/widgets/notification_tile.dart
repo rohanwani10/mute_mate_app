@@ -24,13 +24,17 @@ class MuteMateNotificationTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(20), // Slightly tighter padding for a cleaner look
+      padding: const EdgeInsets.all(
+        20,
+      ), // Slightly tighter padding for a cleaner look
       decoration: BoxDecoration(
         color: AppColors.surfaceContainerlowest,
-        borderRadius: BorderRadius.circular(20), // Match quick action tile radius
+        borderRadius: BorderRadius.circular(
+          20,
+        ), // Match quick action tile radius
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.02),
+            color: Colors.black.withValues(alpha: 0.02),
             blurRadius: 20,
             offset: const Offset(0, 4),
           ),
@@ -50,14 +54,10 @@ class MuteMateNotificationTile extends StatelessWidget {
                   color: iconBackgroundColor,
                   borderRadius: BorderRadius.circular(14),
                 ),
-                child: Icon(
-                  icon,
-                  color: iconColor,
-                  size: 24,
-                ),
+                child: Icon(icon, color: iconColor, size: 24),
               ),
               const SizedBox(width: 16),
-              
+
               // Text Content
               Expanded(
                 child: Column(
@@ -84,7 +84,9 @@ class MuteMateNotificationTile extends StatelessWidget {
                         Text(
                           time,
                           style: TextStyle(
-                            color: AppColors.onSurfaceVariant.withOpacity(0.5),
+                            color: AppColors.onSurfaceVariant.withValues(
+                              alpha: 0.5,
+                            ),
                             fontSize: 12,
                             fontWeight: FontWeight.w500,
                           ),
@@ -97,7 +99,9 @@ class MuteMateNotificationTile extends StatelessWidget {
                       maxLines: 3,
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
-                        color: AppColors.onSurfaceVariant.withOpacity(0.8),
+                        color: AppColors.onSurfaceVariant.withValues(
+                          alpha: 0.8,
+                        ),
                         fontSize: 14,
                         height: 1.4,
                       ),
@@ -107,7 +111,7 @@ class MuteMateNotificationTile extends StatelessWidget {
               ),
             ],
           ),
-          
+
           // Unread Indicator Dot
           if (isUnread)
             Positioned(

@@ -35,7 +35,7 @@ class MuteMateActionCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(48),
         boxShadow: [
           BoxShadow(
-            color: backgroundColor.withOpacity(0.2),
+            color: backgroundColor.withValues(alpha: 0.2),
             blurRadius: 10,
             offset: const Offset(0, 4),
           ),
@@ -70,7 +70,9 @@ class MuteMateActionCard extends StatelessWidget {
                       Container(
                         padding: const EdgeInsets.all(12),
                         decoration: BoxDecoration(
-                          color: accentColor ?? Colors.white.withOpacity(0.2),
+                          color:
+                              accentColor ??
+                              Colors.white.withValues(alpha: 0.2),
                           borderRadius: BorderRadius.circular(32),
                         ),
                         child: Icon(icon, color: Colors.white, size: 32),
@@ -106,7 +108,7 @@ class MuteMateActionCard extends StatelessWidget {
                   Text(
                     subtitle,
                     style: TextStyle(
-                      color: Colors.white.withOpacity(0.8),
+                      color: Colors.white.withValues(alpha: 0.8),
                       fontSize: 14,
                     ),
                   ),

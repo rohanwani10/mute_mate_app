@@ -22,11 +22,7 @@ class CameraTranslationPage extends StatelessWidget {
           ),
 
           // AI Skeletal Overlay
-          Positioned.fill(
-            child: CustomPaint(
-              painter: _HandSkeletonPainter(),
-            ),
-          ),
+          Positioned.fill(child: CustomPaint(painter: _HandSkeletonPainter())),
 
           // Top Bar Overlay
           Positioned(
@@ -35,24 +31,39 @@ class CameraTranslationPage extends StatelessWidget {
             right: 0,
             child: SafeArea(
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 16,
+                  vertical: 8,
+                ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    _RoundGlassButton(icon: Icons.arrow_back, onTap: () => Navigator.pop(context)),
+                    _RoundGlassButton(
+                      icon: Icons.arrow_back,
+                      onTap: () => Navigator.pop(context),
+                    ),
                     Column(
                       children: [
                         const Text(
                           'Sign to Speech',
-                          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 18),
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18,
+                          ),
                         ),
                         const SizedBox(height: 4),
                         Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 12,
+                            vertical: 4,
+                          ),
                           decoration: BoxDecoration(
-                            color: Colors.teal.withOpacity(0.2),
+                            color: Colors.teal.withValues(alpha: 0.2),
                             borderRadius: BorderRadius.circular(12),
-                            border: Border.all(color: Colors.teal.withOpacity(0.3)),
+                            border: Border.all(
+                              color: Colors.teal.withValues(alpha: 0.3),
+                            ),
                           ),
                           child: const Row(
                             mainAxisSize: MainAxisSize.min,
@@ -61,7 +72,12 @@ class CameraTranslationPage extends StatelessWidget {
                               SizedBox(width: 8),
                               Text(
                                 'RECOGNIZING',
-                                style: TextStyle(color: Colors.tealAccent, fontSize: 10, fontWeight: FontWeight.bold, letterSpacing: 1.5),
+                                style: TextStyle(
+                                  color: Colors.tealAccent,
+                                  fontSize: 10,
+                                  fontWeight: FontWeight.bold,
+                                  letterSpacing: 1.5,
+                                ),
                               ),
                             ],
                           ),
@@ -88,9 +104,12 @@ class CameraTranslationPage extends StatelessWidget {
             right: 0,
             child: Center(
               child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 24,
+                  vertical: 16,
+                ),
                 decoration: BoxDecoration(
-                  color: const Color(0xFF1C1C1C).withOpacity(0.8),
+                  color: const Color(0xFF1C1C1C).withValues(alpha: 0.8),
                   borderRadius: BorderRadius.circular(20),
                   border: Border.all(color: Colors.white10),
                 ),
@@ -102,11 +121,20 @@ class CameraTranslationPage extends StatelessWidget {
                       children: [
                         Text(
                           'CURRENT SIGN',
-                          style: TextStyle(color: Colors.teal.shade300, fontSize: 10, fontWeight: FontWeight.bold, letterSpacing: 2),
+                          style: TextStyle(
+                            color: Colors.teal.shade300,
+                            fontSize: 10,
+                            fontWeight: FontWeight.bold,
+                            letterSpacing: 2,
+                          ),
                         ),
                         const Text(
                           'Hello',
-                          style: TextStyle(color: Colors.white, fontSize: 24, fontWeight: FontWeight.bold),
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 24,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ],
                     ),
@@ -118,11 +146,20 @@ class CameraTranslationPage extends StatelessWidget {
                       children: [
                         const Text(
                           'CONFIDENCE',
-                          style: TextStyle(color: Colors.grey, fontSize: 10, fontWeight: FontWeight.bold, letterSpacing: 2),
+                          style: TextStyle(
+                            color: Colors.grey,
+                            fontSize: 10,
+                            fontWeight: FontWeight.bold,
+                            letterSpacing: 2,
+                          ),
                         ),
                         Text(
                           '98% Stable',
-                          style: TextStyle(color: Colors.teal.shade300, fontWeight: FontWeight.bold, fontSize: 14),
+                          style: TextStyle(
+                            color: Colors.teal.shade300,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 14,
+                          ),
                         ),
                       ],
                     ),
@@ -176,7 +213,7 @@ class _HandSkeletonPainter extends CustomPainter {
       ..moveTo(points[0].dx, points[0].dy)
       ..lineTo(points[1].dx, points[1].dy)
       ..lineTo(points[2].dx, points[2].dy);
-    
+
     final path2 = Path()
       ..moveTo(points[0].dx, points[0].dy)
       ..lineTo(points[3].dx, points[3].dy)
@@ -203,7 +240,7 @@ class _RoundGlassButton extends StatelessWidget {
         width: 48,
         height: 48,
         decoration: BoxDecoration(
-          color: Colors.black.withOpacity(0.2),
+          color: Colors.black.withValues(alpha: 0.2),
           shape: BoxShape.circle,
         ),
         child: ClipRRect(
@@ -224,13 +261,17 @@ class _PulsePoint extends StatefulWidget {
   State<_PulsePoint> createState() => _PulsePointState();
 }
 
-class _PulsePointState extends State<_PulsePoint> with SingleTickerProviderStateMixin {
+class _PulsePointState extends State<_PulsePoint>
+    with SingleTickerProviderStateMixin {
   late AnimationController _controller;
 
   @override
   void initState() {
     super.initState();
-    _controller = AnimationController(vsync: this, duration: const Duration(seconds: 1))..repeat(reverse: true);
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(seconds: 1),
+    )..repeat(reverse: true);
   }
 
   @override
@@ -246,7 +287,10 @@ class _PulsePointState extends State<_PulsePoint> with SingleTickerProviderState
       child: Container(
         width: 8,
         height: 8,
-        decoration: const BoxDecoration(color: Colors.tealAccent, shape: BoxShape.circle),
+        decoration: const BoxDecoration(
+          color: Colors.tealAccent,
+          shape: BoxShape.circle,
+        ),
       ),
     );
   }
@@ -261,21 +305,35 @@ class _PhraseBuilderTray extends StatelessWidget {
       width: double.infinity,
       padding: const EdgeInsets.fromLTRB(24, 12, 24, 32),
       decoration: BoxDecoration(
-        color: Colors.white.withOpacity(0.9),
+        color: Colors.white.withValues(alpha: 0.9),
         borderRadius: const BorderRadius.vertical(top: Radius.circular(32)),
         boxShadow: [
-          BoxShadow(color: Colors.black.withOpacity(0.1), blurRadius: 40, offset: const Offset(0, -10)),
+          BoxShadow(
+            color: Colors.black.withValues(alpha: 0.1),
+            blurRadius: 40,
+            offset: const Offset(0, -10),
+          ),
         ],
       ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Container(width: 40, height: 4, decoration: BoxDecoration(color: Colors.grey.shade300, borderRadius: BorderRadius.circular(2))),
+          Container(
+            width: 40,
+            height: 4,
+            decoration: BoxDecoration(
+              color: Colors.grey.shade300,
+              borderRadius: BorderRadius.circular(2),
+            ),
+          ),
           const SizedBox(height: 24),
           Container(
             width: double.infinity,
             padding: const EdgeInsets.all(16),
-            decoration: BoxDecoration(color: Colors.grey.shade50, borderRadius: BorderRadius.circular(20)),
+            decoration: BoxDecoration(
+              color: Colors.grey.shade50,
+              borderRadius: BorderRadius.circular(20),
+            ),
             child: Wrap(
               spacing: 8,
               runSpacing: 8,
@@ -299,9 +357,17 @@ class _PhraseBuilderTray extends StatelessWidget {
                 child: Container(
                   height: 64,
                   decoration: BoxDecoration(
-                    gradient: const LinearGradient(colors: [AppColors.primary, Color(0xFF004D40)]),
+                    gradient: const LinearGradient(
+                      colors: [AppColors.primary, Color(0xFF004D40)],
+                    ),
                     borderRadius: BorderRadius.circular(20),
-                    boxShadow: [BoxShadow(color: AppColors.primary.withOpacity(0.3), blurRadius: 12, offset: const Offset(0, 4))],
+                    boxShadow: [
+                      BoxShadow(
+                        color: AppColors.primary.withValues(alpha: 0.3),
+                        blurRadius: 12,
+                        offset: const Offset(0, 4),
+                      ),
+                    ],
                   ),
                   child: const Center(
                     child: Row(
@@ -309,7 +375,14 @@ class _PhraseBuilderTray extends StatelessWidget {
                       children: [
                         Icon(Icons.volume_up, color: Colors.white),
                         SizedBox(width: 12),
-                        Text('Speak', style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold)),
+                        Text(
+                          'Speak',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
                       ],
                     ),
                   ),
@@ -331,8 +404,17 @@ class _PhraseChip extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-      decoration: BoxDecoration(color: AppColors.primary.withOpacity(0.1), borderRadius: BorderRadius.circular(99)),
-      child: Text(label, style: const TextStyle(color: AppColors.primary, fontWeight: FontWeight.bold)),
+      decoration: BoxDecoration(
+        color: AppColors.primary.withValues(alpha: 0.1),
+        borderRadius: BorderRadius.circular(99),
+      ),
+      child: Text(
+        label,
+        style: const TextStyle(
+          color: AppColors.primary,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
     );
   }
 }
@@ -354,7 +436,10 @@ class _ControlAction extends StatelessWidget {
     return Container(
       width: 64,
       height: 64,
-      decoration: BoxDecoration(color: Colors.grey.shade200, borderRadius: BorderRadius.circular(20)),
+      decoration: BoxDecoration(
+        color: Colors.grey.shade200,
+        borderRadius: BorderRadius.circular(20),
+      ),
       child: Icon(icon, color: Colors.black54),
     );
   }

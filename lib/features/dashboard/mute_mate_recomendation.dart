@@ -31,7 +31,7 @@ class MuteMateRecommendation extends StatelessWidget {
         boxShadow: [
           BoxShadow(
             blurRadius: 6,
-            color: Colors.black.withOpacity(0.05),
+            color: Colors.black.withValues(alpha: .05),
             offset: const Offset(0, 2),
           ),
         ],
@@ -61,7 +61,7 @@ class MuteMateRecommendation extends StatelessWidget {
                       vertical: 2,
                     ),
                     decoration: BoxDecoration(
-                      color: Colors.black.withOpacity(0.6),
+                      color: Colors.black.withValues(alpha: .6),
                       borderRadius: BorderRadius.circular(6),
                     ),
                     child: Text(

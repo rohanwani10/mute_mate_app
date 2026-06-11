@@ -32,7 +32,7 @@ class LearnPage extends ConsumerWidget {
                 Text(
                   'Recent Searches',
                   style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                    color: AppColors.onSurfaceVariant.withOpacity(0.6),
+                    color: AppColors.onSurfaceVariant.withValues(alpha: .6),
                     fontWeight: FontWeight.bold,
                     letterSpacing: 1,
                     fontSize: 12,
@@ -162,7 +162,7 @@ class _StickySearchBar extends StatelessWidget {
             decoration: InputDecoration(
               hintText: 'Search lessons or signs...',
               hintStyle: TextStyle(
-                color: AppColors.onSurfaceVariant.withOpacity(0.5),
+                color: AppColors.onSurfaceVariant.withValues(alpha: 0.5),
                 fontWeight: FontWeight.w500,
               ),
               prefixIcon: const Icon(
@@ -174,7 +174,7 @@ class _StickySearchBar extends StatelessWidget {
                 margin: const EdgeInsets.only(right: 4),
                 padding: const EdgeInsets.all(12),
                 decoration: BoxDecoration(
-                  color: AppColors.primary.withOpacity(0.1),
+                  color: AppColors.primary.withValues(alpha: 0.1),
                   borderRadius: BorderRadius.circular(24),
                 ),
                 child: const Icon(

@@ -13,12 +13,12 @@ class MuteMateBottomNav extends ConsumerWidget {
 
     return Container(
       decoration: BoxDecoration(
-        color: AppColors.background.withOpacity(0.95),
+        color: AppColors.background.withValues(alpha: 0.95),
         borderRadius: const BorderRadius.vertical(top: Radius.circular(32)),
-        border: Border.all(color: Colors.teal.withOpacity(0.1)),
+        border: Border.all(color: Colors.teal.withValues(alpha: 0.1)),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.04),
+            color: Colors.black.withValues(alpha: 0.04),
             blurRadius: 40,
             offset: const Offset(0, -8),
           ),
@@ -113,7 +113,9 @@ class _NavButton extends StatelessWidget {
           width: double.infinity,
           padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 8),
           decoration: BoxDecoration(
-            color: isActive ? Colors.teal.withOpacity(0.1) : Colors.transparent,
+            color: isActive
+                ? Colors.teal.withValues(alpha: 0.1)
+                : Colors.transparent,
             borderRadius: BorderRadius.circular(20),
           ),
           child: Column(

@@ -6,11 +6,7 @@ class LessonCard extends StatelessWidget {
   final Lesson lesson;
   final VoidCallback onTap;
 
-  const LessonCard({
-    required this.lesson,
-    required this.onTap,
-    super.key,
-  });
+  const LessonCard({required this.lesson, required this.onTap, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -63,12 +59,9 @@ class LessonCard extends StatelessWidget {
                                 ),
                                 child: Text(
                                   'Trending',
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .labelSmall
+                                  style: Theme.of(context).textTheme.labelSmall
                                       ?.copyWith(
-                                        color:
-                                            AppColors.onSecondaryContainer,
+                                        color: AppColors.onSecondaryContainer,
                                         fontWeight: FontWeight.bold,
                                         fontSize: 10,
                                       ),
@@ -77,12 +70,10 @@ class LessonCard extends StatelessWidget {
                             const SizedBox(width: 8),
                             Text(
                               '${lesson.duration} • ${lesson.level}',
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .labelSmall
+                              style: Theme.of(context).textTheme.labelSmall
                                   ?.copyWith(
                                     color: AppColors.onSurfaceVariant
-                                        .withOpacity(0.7),
+                                        .withValues(alpha: 0.7),
                                     fontSize: 12,
                                   ),
                             ),
@@ -91,21 +82,19 @@ class LessonCard extends StatelessWidget {
                         const SizedBox(height: 8),
                         Text(
                           lesson.title,
-                          style:
-                              Theme.of(context).textTheme.bodyLarge?.copyWith(
-                                    fontWeight: FontWeight.bold,
-                                    color: AppColors.onSurface,
-                                  ),
+                          style: Theme.of(context).textTheme.bodyLarge
+                              ?.copyWith(
+                                fontWeight: FontWeight.bold,
+                                color: AppColors.onSurface,
+                              ),
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                         ),
                         const SizedBox(height: 4),
                         Text(
                           lesson.description,
-                          style:
-                              Theme.of(context).textTheme.bodySmall?.copyWith(
-                                    color: AppColors.onSurfaceVariant,
-                                  ),
+                          style: Theme.of(context).textTheme.bodySmall
+                              ?.copyWith(color: AppColors.onSurfaceVariant),
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                         ),
@@ -113,10 +102,7 @@ class LessonCard extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(width: 8),
-                  Icon(
-                    Icons.chevron_right,
-                    color: AppColors.primaryContainer,
-                  ),
+                  Icon(Icons.chevron_right, color: AppColors.primaryContainer),
                 ],
               ),
             ),

@@ -5,7 +5,9 @@ import '../../shared/widgets/pill_slider.dart';
 
 enum TranslationMode { signToSpeech, speechToSign }
 
-final translationModeProvider = StateProvider<TranslationMode>((ref) => TranslationMode.speechToSign);
+final translationModeProvider = StateProvider<TranslationMode>(
+  (ref) => TranslationMode.speechToSign,
+);
 
 class TranslationHub extends ConsumerWidget {
   const TranslationHub({super.key});
@@ -37,7 +39,9 @@ class TranslationHub extends ConsumerWidget {
             padding: EdgeInsets.only(right: 16.0),
             child: CircleAvatar(
               radius: 18,
-              backgroundImage: NetworkImage('https://lh3.googleusercontent.com/aida-public/AB6AXuBt5U5XCJ0NJfl2azxeRDwCtOK09y8_44IuXkUvnFw0mz7fDC8mP2IJboprz47uQsRVmWUyHeI4FiIvOf9WJ6oASPvuXjeDzEjpWdhpyHN3gjDcHDRd4bKWpWr-Egwpvl5lgTY5vteTYGJr6keB0a0rJWGCtIvnkdmQAwAUN68yKNGQc4k0e6iM4ueX-cbOna8VQDTbv3VMKMgjCIJqCiS_e3UbqBbQiGWPBavEtg9I_vrK43NdZLiYTEVclDtkPqgrm0b1Lr8BLAAF'),
+              backgroundImage: NetworkImage(
+                'https://lh3.googleusercontent.com/aida-public/AB6AXuBt5U5XCJ0NJfl2azxeRDwCtOK09y8_44IuXkUvnFw0mz7fDC8mP2IJboprz47uQsRVmWUyHeI4FiIvOf9WJ6oASPvuXjeDzEjpWdhpyHN3gjDcHDRd4bKWpWr-Egwpvl5lgTY5vteTYGJr6keB0a0rJWGCtIvnkdmQAwAUN68yKNGQc4k0e6iM4ueX-cbOna8VQDTbv3VMKMgjCIJqCiS_e3UbqBbQiGWPBavEtg9I_vrK43NdZLiYTEVclDtkPqgrm0b1Lr8BLAAF',
+              ),
             ),
           ),
         ],
@@ -54,8 +58,11 @@ class TranslationHub extends ConsumerWidget {
                   labels: const ['Sign to Speech', 'Speech to Sign'],
                   selectedIndex: mode == TranslationMode.signToSpeech ? 0 : 1,
                   onSegmentChosen: (index) {
-                    ref.read(translationModeProvider.notifier).state =
-                        index == 0 ? TranslationMode.signToSpeech : TranslationMode.speechToSign;
+                    ref
+                        .read(translationModeProvider.notifier)
+                        .state = index == 0
+                        ? TranslationMode.signToSpeech
+                        : TranslationMode.speechToSign;
                   },
                 ),
               ),
@@ -72,7 +79,7 @@ class TranslationHub extends ConsumerWidget {
                   borderRadius: BorderRadius.circular(32),
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.black.withOpacity(0.03),
+                      color: Colors.black.withValues(alpha: 0.03),
                       blurRadius: 40,
                       offset: const Offset(0, 12),
                     ),
@@ -124,7 +131,10 @@ class TranslationHub extends ConsumerWidget {
                     ),
                     TextButton(
                       onPressed: () {},
-                      child: const Text('Clear all', style: TextStyle(fontSize: 12)),
+                      child: const Text(
+                        'Clear all',
+                        style: TextStyle(fontSize: 12),
+                      ),
                     ),
                   ],
                 ),
@@ -167,7 +177,11 @@ class TranslationHub extends ConsumerWidget {
                           color: Colors.grey,
                         ),
                       ),
-                      const Icon(Icons.volume_up, color: AppColors.primary, size: 20),
+                      const Icon(
+                        Icons.volume_up,
+                        color: AppColors.primary,
+                        size: 20,
+                      ),
                     ],
                   ),
                   const SizedBox(height: 16),
@@ -202,7 +216,7 @@ class TranslationHub extends ConsumerWidget {
             Container(
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
-                color: const Color(0xFFE0F2F1).withOpacity(0.5),
+                color: const Color(0xFFE0F2F1).withValues(alpha: 0.5),
                 borderRadius: BorderRadius.circular(20),
               ),
               child: Row(
@@ -213,7 +227,11 @@ class TranslationHub extends ConsumerWidget {
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(12),
                     ),
-                    child: const Icon(Icons.tips_and_updates, color: AppColors.primary, size: 20),
+                    child: const Icon(
+                      Icons.tips_and_updates,
+                      color: AppColors.primary,
+                      size: 20,
+                    ),
                   ),
                   const SizedBox(width: 16),
                   const Expanded(
@@ -222,7 +240,10 @@ class TranslationHub extends ConsumerWidget {
                       children: [
                         Text(
                           'Did you know?',
-                          style: TextStyle(fontWeight: FontWeight.bold, color: AppColors.primary),
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: AppColors.primary,
+                          ),
                         ),
                         Text(
                           'You can save common phrases for offline use.',
@@ -251,13 +272,10 @@ class _CircularControlButton extends StatelessWidget {
       width: 40,
       height: 40,
       decoration: BoxDecoration(
-        color: Colors.white.withOpacity(0.9),
+        color: Colors.white.withValues(alpha: 0.9),
         shape: BoxShape.circle,
         boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.05),
-            blurRadius: 4,
-          ),
+          BoxShadow(color: Colors.black.withValues(alpha: 0.05), blurRadius: 4),
         ],
       ),
       child: Icon(icon, color: AppColors.primary, size: 20),
@@ -278,7 +296,13 @@ class _SignChip extends StatelessWidget {
         color: isActive ? AppColors.primary : Colors.grey.shade100,
         borderRadius: BorderRadius.circular(99),
         boxShadow: isActive
-            ? [BoxShadow(color: AppColors.primary.withOpacity(0.3), blurRadius: 10, offset: const Offset(0, 4))]
+            ? [
+                BoxShadow(
+                  color: AppColors.primary.withValues(alpha: 0.3),
+                  blurRadius: 10,
+                  offset: const Offset(0, 4),
+                ),
+              ]
             : null,
       ),
       child: Row(
@@ -315,7 +339,11 @@ class _AddWordButton extends StatelessWidget {
       ),
       child: const Text(
         '+ Add Word',
-        style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: Colors.grey),
+        style: TextStyle(
+          fontSize: 12,
+          fontWeight: FontWeight.bold,
+          color: Colors.grey,
+        ),
       ),
     );
   }
@@ -332,7 +360,7 @@ class _WiderMicButton extends StatelessWidget {
         borderRadius: BorderRadius.circular(28),
         boxShadow: [
           BoxShadow(
-            color: AppColors.secondary.withOpacity(0.3),
+            color: AppColors.secondary.withValues(alpha: 0.3),
             blurRadius: 15,
             offset: const Offset(0, 8),
           ),

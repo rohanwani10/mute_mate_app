@@ -6,6 +6,7 @@ import 'app_bar.dart';
 class MuteMateScreenShell extends ConsumerWidget {
   final Widget child;
   final String? title;
+  final Widget? titleWidget;
   final bool showProfile;
   final bool showNotifications;
   final List<Widget>? actions;
@@ -17,6 +18,7 @@ class MuteMateScreenShell extends ConsumerWidget {
     super.key,
     required this.child,
     this.title,
+    this.titleWidget,
     this.showProfile = false,
     this.showNotifications = false,
     this.actions,
@@ -30,6 +32,7 @@ class MuteMateScreenShell extends ConsumerWidget {
       extendBody: true,
       appBar: MuteMateAppBar(
         title: title,
+        titleWidget: titleWidget,
         showProfile: showProfile,
         showNotifications: showNotifications,
         actions: actions,

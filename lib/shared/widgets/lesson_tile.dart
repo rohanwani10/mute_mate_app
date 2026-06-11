@@ -55,7 +55,10 @@ class MuteMateLessonTile extends StatelessWidget {
                     children: [
                       if (isTrending)
                         Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 8,
+                            vertical: 2,
+                          ),
                           margin: const EdgeInsets.only(right: 8),
                           decoration: BoxDecoration(
                             color: AppColors.secondaryContainer,
@@ -73,8 +76,10 @@ class MuteMateLessonTile extends StatelessWidget {
                       Text(
                         '$duration • $level',
                         style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                              color: AppColors.onSurfaceVariant.withOpacity(0.7),
-                            ),
+                          color: AppColors.onSurfaceVariant.withValues(
+                            alpha: 0.7,
+                          ),
+                        ),
                       ),
                     ],
                   ),
@@ -96,10 +101,7 @@ class MuteMateLessonTile extends StatelessWidget {
                 ],
               ),
             ),
-            const Icon(
-              Icons.chevron_right,
-              color: AppColors.primaryContainer,
-            ),
+            const Icon(Icons.chevron_right, color: AppColors.primaryContainer),
           ],
         ),
       ),

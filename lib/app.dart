@@ -5,7 +5,9 @@ import 'core/app_theme.dart';
 import 'shared/layouts/screen_shell.dart';
 import 'shared/providers/nav_provider.dart';
 import 'features/dashboard/dashboard_page.dart';
-import 'features/notifications/notifications_page.dart';
+import 'package:mute_mate_app/features/notifications/notifications_page.dart';
+import 'package:mute_mate_app/features/profile/profile_page.dart';
+import 'package:mute_mate_app/features/settings/providers/settings_provider.dart';
 
 // Temporary placeholder pages
 class PlaceholderPage extends StatelessWidget {
@@ -47,10 +49,62 @@ class AppHome extends ConsumerWidget {
         children: [
           // Main Application Shell
           MuteMateScreenShell(
-            title: 'MuteMate',
+            title: activeTab == MuteMateTab.profile
+                ? (ref.watch(isSettingsSearchActiveProvider)
+                      ? null
+                      : 'Settings')
+                : 'MuteMate',
+            titleWidget:
+                activeTab == MuteMateTab.profile &&
+                    ref.watch(isSettingsSearchActiveProvider)
+                ? const _AppBarSearchField()
+                : null,
             showProfile: activeTab != MuteMateTab.profile,
             showNotifications: activeTab != MuteMateTab.profile,
             showBottomNav: true,
+            leading: activeTab == MuteMateTab.profile
+                ? IconButton(
+                    icon: const Icon(Icons.arrow_back),
+                    onPressed: () {
+                      if (ref.read(isSettingsSearchActiveProvider)) {
+                        ref
+                                .read(isSettingsSearchActiveProvider.notifier)
+                                .state =
+                            false;
+                        ref.read(settingsSearchQueryProvider.notifier).state =
+                            '';
+                      } else {
+                        ref.read(navIndexProvider.notifier).state = 0;
+                      }
+                    },
+                  )
+                : null,
+            actions: activeTab == MuteMateTab.profile
+                ? [
+                    if (ref.watch(isSettingsSearchActiveProvider))
+                      IconButton(
+                        icon: const Icon(Icons.close),
+                        onPressed: () {
+                          ref
+                                  .read(isSettingsSearchActiveProvider.notifier)
+                                  .state =
+                              false;
+                          ref.read(settingsSearchQueryProvider.notifier).state =
+                              '';
+                        },
+                      )
+                    else
+                      IconButton(
+                        icon: const Icon(Icons.search),
+                        onPressed: () {
+                          ref
+                                  .read(isSettingsSearchActiveProvider.notifier)
+                                  .state =
+                              true;
+                        },
+                      ),
+                  ]
+                : null,
             child: _buildPage(activeTab),
           ),
 
@@ -83,7 +137,7 @@ class AppHome extends ConsumerWidget {
                   TextButton(
                     onPressed: () {},
                     child: const Text(
-                      'Read All',
+                      'Read All.',
                       style: TextStyle(
                         color: AppColors.primary,
                         fontWeight: FontWeight.bold,
@@ -107,9 +161,64 @@ class AppHome extends ConsumerWidget {
       case MuteMateTab.learn:
         return const LearnPage();
       case MuteMateTab.profile:
-        return const PlaceholderPage('Profile Page');
+        return const ProfilePage();
       default:
         return const DashboardPage();
     }
+  }
+}
+
+class _AppBarSearchField extends ConsumerStatefulWidget {
+  const _AppBarSearchField();
+
+  @override
+  ConsumerState<_AppBarSearchField> createState() => _AppBarSearchFieldState();
+}
+
+class _AppBarSearchFieldState extends ConsumerState<_AppBarSearchField> {
+  late TextEditingController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = TextEditingController(
+      text: ref.read(settingsSearchQueryProvider),
+    );
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    ref.listen<String>(settingsSearchQueryProvider, (prev, next) {
+      if (_controller.text != next) {
+        _controller.text = next;
+      }
+    });
+
+    return TextField(
+      controller: _controller,
+      autofocus: true,
+      style: const TextStyle(
+        fontSize: 18,
+        fontWeight: FontWeight.bold,
+        color: Colors.black,
+      ),
+      decoration: InputDecoration(
+        hintText: 'Search settings...',
+        border: InputBorder.none,
+        hintStyle: TextStyle(
+          color: AppColors.onSurfaceVariant.withValues(alpha: 0.5),
+          fontWeight: FontWeight.normal,
+        ),
+      ),
+      onChanged: (val) {
+        ref.read(settingsSearchQueryProvider.notifier).state = val;
+      },
+    );
   }
 }

@@ -1,23 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../shared/widgets/action_card.dart';
 import '../../shared/widgets/stat_card.dart';
 import '../../core/app_theme.dart';
+import '../profile/providers/profile_provider.dart';
 import './mute_mate_recomendation.dart';
 
-class DashboardPage extends StatelessWidget {
+class DashboardPage extends ConsumerWidget {
   const DashboardPage({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final profile = ref.watch(profileProvider);
     return SingleChildScrollView(
       padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           // Greeting
-          const Text(
-            'Hello, Alex',
-            style: TextStyle(
+          Text(
+            'Hello, ${profile.name.split(' ').first}',
+            style: const TextStyle(
               fontSize: 32,
               fontWeight: FontWeight.bold,
               fontFamily: 'Plus Jakarta Sans',
@@ -100,7 +103,7 @@ class _TotalXPStat extends StatelessWidget {
       icon: Icons.stars,
       iconBackgroundColor: AppColors.surfaceContainerHigh,
       iconColor: AppColors.primary,
-      trailing: Container(
+      trailing: SizedBox(
         width: 48,
         height: 48,
         child: CircularProgressIndicator(
@@ -163,7 +166,7 @@ class _LearningModuleBanner extends StatelessWidget {
       decoration: BoxDecoration(
         color: AppColors.surfaceContainerLow,
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: AppColors.outline.withOpacity(0.1)),
+        border: Border.all(color: AppColors.outline.withValues(alpha: .1)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

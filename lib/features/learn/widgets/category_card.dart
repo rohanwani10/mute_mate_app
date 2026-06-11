@@ -35,7 +35,7 @@ class CategoryCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(50),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.04),
+              color: Colors.black.withValues(alpha: 0.04),
               blurRadius: 8,
               offset: const Offset(0, 2),
             ),
@@ -45,8 +45,8 @@ class CategoryCard extends StatelessWidget {
           color: Colors.transparent,
           child: InkWell(
             onTap: onTap,
-            borderRadius: BorderRadius.circular(16),
-            hoverColor: AppColors.primaryFixed.withOpacity(0.2),
+            borderRadius: BorderRadius.circular(50),
+            hoverColor: AppColors.primaryFixed.withValues(alpha: 0.2),
             child: Padding(
               padding: const EdgeInsets.all(24),
               child: Column(
@@ -56,7 +56,7 @@ class CategoryCard extends StatelessWidget {
                     width: 72,
                     height: 72,
                     decoration: BoxDecoration(
-                      color: AppColors.primary.withOpacity(0.1),
+                      color: AppColors.primary.withValues(alpha: 0.1),
                       borderRadius: BorderRadius.circular(50),
                     ),
                     child: Icon(
