@@ -28,5 +28,9 @@
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>This app requires speech recognition to convert your voice search queries into text.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>This app requires microphone access to record your voice search queries.</string>
 </dict>
 </plist>

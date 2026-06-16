@@ -6,12 +6,52 @@ import 'providers/learn_provider.dart';
 import 'widgets/category_card.dart';
 import 'widgets/lesson_card.dart';
 import 'widgets/recent_search_chip.dart';
+import 'widgets/voice_search_sheet.dart';
 
-class LearnPage extends ConsumerWidget {
+class LearnPage extends ConsumerStatefulWidget {
   const LearnPage({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<LearnPage> createState() => _LearnPageState();
+}
+
+class _LearnPageState extends ConsumerState<LearnPage> {
+  final TextEditingController _searchController = TextEditingController();
+
+  @override
+  void dispose() {
+    _searchController.dispose();
+    super.dispose();
+  }
+
+  void _performSearch(String query) {
+    if (query.trim().isEmpty) return;
+    _searchController.text = query;
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (_) => LessonsLibraryPage(
+          initialSearchQuery: query,
+        ),
+      ),
+    );
+  }
+
+  void _onMicTap() async {
+    final result = await showModalBottomSheet<String>(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      builder: (context) => const VoiceSearchSheet(),
+    );
+
+    if (result != null && mounted) {
+      _performSearch(result);
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final categories = ref.watch(categoriesProvider);
     final recentSearches = ref.watch(recentSearchesProvider);
     final trendingLessons = ref.watch(trendingLessonsProvider);
@@ -21,7 +61,11 @@ class LearnPage extends ConsumerWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           // Sticky Search Section
-          _StickySearchBar(),
+          _StickySearchBar(
+            controller: _searchController,
+            onSubmitted: (query) => _performSearch(query),
+            onMicTap: () => _onMicTap(),
+          ),
           const SizedBox(height: 24),
 
           // Recent Searches Section
@@ -45,8 +89,10 @@ class LearnPage extends ConsumerWidget {
                   runSpacing: 12,
                   children: recentSearches
                       .map(
-                        (search) =>
-                            RecentSearchChip(label: search, onTap: () {}),
+                        (search) => RecentSearchChip(
+                          label: search,
+                          onTap: () => _performSearch(search),
+                        ),
                       )
                       .toList(),
                 ),
@@ -157,6 +203,16 @@ class LearnPage extends ConsumerWidget {
 }
 
 class _StickySearchBar extends StatelessWidget {
+  final TextEditingController controller;
+  final ValueChanged<String> onSubmitted;
+  final VoidCallback onMicTap;
+
+  const _StickySearchBar({
+    required this.controller,
+    required this.onSubmitted,
+    required this.onMicTap,
+  });
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -170,10 +226,13 @@ class _StickySearchBar extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(2.0),
           child: TextField(
+            controller: controller,
+            onSubmitted: onSubmitted,
+            textInputAction: TextInputAction.search,
             decoration: InputDecoration(
               hintText: 'Search lessons or signs...',
               hintStyle: TextStyle(
-                color: AppColors.onSurfaceVariant.withValues(alpha: 0.5),
+                color: AppColors.onSurfaceVariant.withValues(alpha: 0.55),
                 fontWeight: FontWeight.w500,
               ),
               prefixIcon: const Icon(
@@ -181,17 +240,20 @@ class _StickySearchBar extends StatelessWidget {
                 size: 24,
                 color: AppColors.primary,
               ),
-              suffixIcon: Container(
-                margin: const EdgeInsets.only(right: 4),
-                padding: const EdgeInsets.all(12),
-                decoration: BoxDecoration(
-                  color: AppColors.primary.withValues(alpha: 0.1),
-                  borderRadius: BorderRadius.circular(24),
-                ),
-                child: const Icon(
-                  Icons.mic,
-                  size: 24,
-                  color: AppColors.primary,
+              suffixIcon: GestureDetector(
+                onTap: onMicTap,
+                child: Container(
+                  margin: const EdgeInsets.only(right: 4),
+                  padding: const EdgeInsets.all(12),
+                  decoration: BoxDecoration(
+                    color: AppColors.primary.withValues(alpha: 0.1),
+                    borderRadius: BorderRadius.circular(24),
+                  ),
+                  child: const Icon(
+                    Icons.mic,
+                    size: 24,
+                    color: AppColors.primary,
+                  ),
                 ),
               ),
               border: InputBorder.none,

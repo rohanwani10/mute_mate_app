@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:mute_mate_app/features/translation/camera_translation_page.dart';
+import 'package:mute_mate_app/features/translation/translation_hub.dart';
 import '../../shared/widgets/action_card.dart';
 import '../../shared/widgets/stat_card.dart';
 import '../../core/app_theme.dart';
@@ -55,7 +57,14 @@ class DashboardPage extends ConsumerWidget {
             backgroundColor: AppColors.primary,
             buttonText: 'Start now',
             badgeText: '1 tap start',
-            onActionPressed: () {},
+            onActionPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => const CameraTranslationPage(),
+                ),
+              );
+            },
           ),
           const SizedBox(height: 16),
           MuteMateActionCard(
@@ -66,7 +75,12 @@ class DashboardPage extends ConsumerWidget {
             backgroundColor: AppColors.secondaryContainer,
             buttonText: 'Start now',
             badgeText: '1 tap start',
-            onActionPressed: () {},
+            onActionPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (_) => const TranslationHub()),
+              );
+            },
           ),
           const SizedBox(height: 32),
 

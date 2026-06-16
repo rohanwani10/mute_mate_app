@@ -230,8 +230,13 @@ const _categories = ['All', 'Basics', 'Daily Life', 'Emergency', 'Work'];
 class LessonsLibraryPage extends StatefulWidget {
   /// The category to pre-select when opened from a category card.
   final String? initialCategory;
+  final String? initialSearchQuery;
 
-  const LessonsLibraryPage({this.initialCategory, super.key});
+  const LessonsLibraryPage({
+    this.initialCategory,
+    this.initialSearchQuery,
+    super.key,
+  });
 
   @override
   State<LessonsLibraryPage> createState() => _LessonsLibraryPageState();
@@ -249,6 +254,8 @@ class _LessonsLibraryPageState extends State<LessonsLibraryPage> {
   void initState() {
     super.initState();
     _selectedCategory = widget.initialCategory ?? 'All';
+    _searchController.text = widget.initialSearchQuery ?? '';
+    _searchQuery = _searchController.text.toLowerCase();
     _searchController.addListener(() {
       setState(() => _searchQuery = _searchController.text.toLowerCase());
     });
