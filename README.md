@@ -1,14 +1,22 @@
-# MuteMate
+# MuteMate: Your Ultimate Sign Language Companion
 
-**MuteMate** is a comprehensive Flutter application designed to bridge communication gaps for the Deaf and Hard of Hearing community. It provides real-time sign language translation, voice-to-sign conversion, and interactive learning tools, all within a beautiful, user-centric interface.
+**MuteMate** is a comprehensive Flutter application designed to bridge
+communication gaps for the Deaf and Hard of Hearing community. It provides
+real-time sign language translation, voice-to-sign conversion, and interactive
+learning tools, all within a beautiful, user-centric interface.
 
 ## 🚀 Key Features
 
-- **Real-Time Translation**: Instantly translate spoken language to sign language (and vice versa) using advanced AI models.
-- **Interactive Learning**: Gamified lessons and challenges to help users learn and master sign language at their own pace.
-- **Community Hub**: Connect with other learners and native signers, share progress, and participate in group activities.
-- **Personalized Dashboard**: Track your learning streak, achievements, and daily goals.
-- **Offline Support**: Access core features and downloaded lessons even without an internet connection.
+- **Real-Time Translation**: Instantly translate spoken language to sign
+  language (and vice versa) using advanced AI models.
+- **Interactive Learning**: Gamified lessons and challenges to help users learn
+  and master sign language at their own pace.
+- **Community Hub**: Connect with other learners and native signers, share
+  progress, and participate in group activities.
+- **Personalized Dashboard**: Track your learning streak, achievements, and
+  daily goals.
+- **Offline Support**: Access core features and downloaded lessons even without
+  an internet connection.
 
 ## 🛠️ Tech Stack
 
@@ -59,20 +67,24 @@ mute_mate_app/
 ### Installation
 
 1. **Clone the repository**
+
    ```bash
    git clone <repository-url>
    cd mute_mate_app
    ```
 
 2. **Install dependencies**
+
    ```bash
    flutter pub get
    ```
 
 3. **Configure Firebase (optional)**
-   - Create a Firebase project at [https://console.firebase.google.com/](https://console.firebase.google.com/)
+   - Create a Firebase project at
+     [https://console.firebase.google.com/](https://console.firebase.google.com/)
    - Add Android and/or iOS apps to your Firebase project
-   - Download the `google-services.json` (Android) or `GoogleService-Info.plist` (iOS) files
+   - Download the `google-services.json` (Android) or `GoogleService-Info.plist`
+     (iOS) files
    - Place them in the `android/app/` and `ios/Runner/` directories respectively
 
 4. **Run the app**
@@ -82,7 +94,8 @@ mute_mate_app/
 
 ## 🎨 Design System
 
-MuteMate uses a custom design system focused on accessibility and visual clarity:
+MuteMate uses a custom design system focused on accessibility and visual
+clarity:
 
 - **Primary Color**: `#00A896` (Teal)
 - **Background**: `#F9F9F8` (Off-white)
@@ -100,4 +113,5 @@ Contributions are welcome! Please follow these steps:
 
 ## 📝 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
+for details.
