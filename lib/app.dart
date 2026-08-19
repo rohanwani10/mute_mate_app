@@ -105,7 +105,16 @@ class AppHome extends ConsumerWidget {
                       ),
                   ]
                 : null,
-            child: _buildPage(activeTab),
+            child: IndexedStack(
+              index: ref.watch(navIndexProvider),
+              children: const [
+                DashboardPage(),
+                SizedBox.shrink(), // translate: opens a bottom sheet, never an active page
+                LearnPage(),
+                ProfilePage(),
+                SizedBox.shrink(), // notifications: shown via the overlay below, not a tab page
+              ],
+            ),
           ),
 
           // Notification Overlay (Symmetric Entry/Exit)
@@ -154,18 +163,6 @@ class AppHome extends ConsumerWidget {
     );
   }
 
-  Widget _buildPage(MuteMateTab tab) {
-    switch (tab) {
-      case MuteMateTab.home:
-        return const DashboardPage();
-      case MuteMateTab.learn:
-        return const LearnPage();
-      case MuteMateTab.profile:
-        return const ProfilePage();
-      default:
-        return const DashboardPage();
-    }
-  }
 }
 
 class _AppBarSearchField extends ConsumerStatefulWidget {

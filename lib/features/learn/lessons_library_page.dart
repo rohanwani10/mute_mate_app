@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../core/app_theme.dart';
@@ -579,10 +580,10 @@ class _LessonCard extends StatelessWidget {
                   child: Stack(
                     fit: StackFit.expand,
                     children: [
-                      Image.network(
-                        lesson.imageUrl,
+                      CachedNetworkImage(
+                        imageUrl: lesson.imageUrl,
                         fit: BoxFit.cover,
-                        errorBuilder: (_, __, ___) => Container(
+                        errorWidget: (_, __, ___) => Container(
                           color: AppColors.surfaceContainerHigh,
                           child: const Icon(
                             Icons.play_circle_outline,

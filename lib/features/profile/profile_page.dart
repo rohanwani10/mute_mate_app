@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../core/app_theme.dart';
@@ -242,7 +243,7 @@ class ProfilePage extends ConsumerWidget {
                         ),
                         child: CircleAvatar(
                           radius: 40,
-                          backgroundImage: NetworkImage(profile.avatarUrl),
+                          backgroundImage: CachedNetworkImageProvider(profile.avatarUrl),
                         ),
                       ),
                       if (profile.isVerified)

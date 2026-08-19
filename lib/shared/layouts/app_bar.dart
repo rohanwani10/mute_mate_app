@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../core/app_theme.dart';
@@ -76,7 +77,7 @@ class _ProfileAvatar extends ConsumerWidget {
           ),
           child: CircleAvatar(
             radius: 20,
-            backgroundImage: NetworkImage(avatarUrl),
+            backgroundImage: CachedNetworkImageProvider(avatarUrl),
           ),
         ),
       ),

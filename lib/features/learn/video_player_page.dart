@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/app_theme.dart';
@@ -111,8 +112,9 @@ class _VideoPlayerPageState extends ConsumerState<VideoPlayerPage> {
                             children: [
                               // Video Thumbnail Image
                               Positioned.fill(
-                                child: Image.network(
-                                  'https://lh3.googleusercontent.com/aida-public/AB6AXuCtbVaYR5MnOzjASwqxYJAyk9acYYe-FVPMbXs8NlLWEA8calxmLyP8F-QaGuiNoCXglJcGDVDepkRyR9gGnX_LRpAJDpTsAuPgOGCb76TKjz7J-qiemrKgCT-Po1JzdChcttgYZAh47ZJhuIS4ZR6nG6B7XYhg5V_ZEd2tJ8RRba6vYbIwAszJg3oKIlhMmd2qUhto_U37-mnkQB2PgKdrh17hivobjGs1QWsSs_i1XoOfRlmyQvUPc0aEEThRFNYuDCsJSaj5zj2x',
+                                child: CachedNetworkImage(
+                                  imageUrl:
+                                      'https://lh3.googleusercontent.com/aida-public/AB6AXuCtbVaYR5MnOzjASwqxYJAyk9acYYe-FVPMbXs8NlLWEA8calxmLyP8F-QaGuiNoCXglJcGDVDepkRyR9gGnX_LRpAJDpTsAuPgOGCb76TKjz7J-qiemrKgCT-Po1JzdChcttgYZAh47ZJhuIS4ZR6nG6B7XYhg5V_ZEd2tJ8RRba6vYbIwAszJg3oKIlhMmd2qUhto_U37-mnkQB2PgKdrh17hivobjGs1QWsSs_i1XoOfRlmyQvUPc0aEEThRFNYuDCsJSaj5zj2x',
                                   fit: BoxFit.cover,
                                 ),
                               ),
@@ -503,7 +505,7 @@ class _VideoPlayerPageState extends ConsumerState<VideoPlayerPage> {
                                   decoration: const BoxDecoration(
                                     shape: BoxShape.circle,
                                     image: DecorationImage(
-                                      image: NetworkImage(
+                                      image: CachedNetworkImageProvider(
                                         'https://lh3.googleusercontent.com/aida-public/AB6AXuDn2BlRi7LsHZ4pf7qPRM4cN_evqIxu_DNmkj5HwonRFwp4V-GoszNy3wap5Pk0DbjCQzQVlV1NsZmm8bEbd5shlmKqwJOkrAp66XxGNcIdMrDaY_esDUVQlEZc3k3SrGbW5K7qgkOmZhEuQjKXEa1H2bCP18pAsbKpYAcaAMEMpUsVRXCaX1COMOttZ7X2__WfLSqrjGM4OGDhmT-1_NvZ_Tt5Wt4cW5BfhY9r-WU65G8Oo77cP7Ttv4ddqTP_jf7t9Ogmfj2Z7yhF',
                                       ),
                                       fit: BoxFit.cover,
@@ -674,8 +676,8 @@ class _HighlightCard extends StatelessWidget {
           Expanded(
             child: ClipRRect(
               borderRadius: BorderRadius.circular(12),
-              child: Image.network(
-                imageUrl,
+              child: CachedNetworkImage(
+                imageUrl: imageUrl,
                 width: double.infinity,
                 fit: BoxFit.cover,
               ),

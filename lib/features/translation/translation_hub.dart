@@ -1,4 +1,5 @@
 import 'dart:io' show Platform;
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -223,8 +224,9 @@ class _TranslationHubState extends ConsumerState<TranslationHub> {
                       borderRadius: BorderRadius.circular(32),
                       child: Stack(
                         children: [
-                          Image.network(
-                            'https://lh3.googleusercontent.com/aida-public/AB6AXuC5oQipSyu-ZAttz_hhk64MVgNBrYQCSHKDCXUxtYBZUVVpDDLzV44Z2MgD5QPPnqsuoiSJWA2eXMBcAtG-gHRMFXQA9pvnQmLbE9rpqwowNZusSceT878LnzkHvKxFj8i21og10RCLnb2SdAj_1KgdrqTFbsajvPJ8w2HzLsHcLIgarm02NHOdTPymG8mzqLZCZMpoKpxAJSC_0m9eaWCadaNKXteaNfkg8SmD0q0rSDGdE9318G4XHjwEXp-jUWnjqfnr7j6IqiBI',
+                          CachedNetworkImage(
+                            imageUrl:
+                                'https://lh3.googleusercontent.com/aida-public/AB6AXuC5oQipSyu-ZAttz_hhk64MVgNBrYQCSHKDCXUxtYBZUVVpDDLzV44Z2MgD5QPPnqsuoiSJWA2eXMBcAtG-gHRMFXQA9pvnQmLbE9rpqwowNZusSceT878LnzkHvKxFj8i21og10RCLnb2SdAj_1KgdrqTFbsajvPJ8w2HzLsHcLIgarm02NHOdTPymG8mzqLZCZMpoKpxAJSC_0m9eaWCadaNKXteaNfkg8SmD0q0rSDGdE9318G4XHjwEXp-jUWnjqfnr7j6IqiBI',
                             fit: BoxFit.cover,
                             width: double.infinity,
                             height: double.infinity,

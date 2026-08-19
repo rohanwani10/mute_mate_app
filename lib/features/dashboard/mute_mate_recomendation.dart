@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 class MuteMateRecommendation extends StatelessWidget {
@@ -44,8 +45,8 @@ class MuteMateRecommendation extends StatelessWidget {
             borderRadius: const BorderRadius.vertical(top: Radius.circular(48)),
             child: Stack(
               children: [
-                Image.network(
-                  imageUrl,
+                CachedNetworkImage(
+                  imageUrl: imageUrl,
                   width: double.infinity,
                   height: 160,
                   fit: BoxFit.cover,
@@ -135,7 +136,7 @@ class MuteMateRecommendation extends StatelessWidget {
                       children: [
                         CircleAvatar(
                           radius: 14,
-                          backgroundImage: NetworkImage(authorImage!),
+                          backgroundImage: CachedNetworkImageProvider(authorImage!),
                         ),
                         const SizedBox(width: 6),
                         Text(
